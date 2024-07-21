@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Crear</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form (ngSubmit)="saveIncidencia()" #incidenciaForm="ngForm">
+    <ion-item>
+      <ion-label>Título: </ion-label>
+      <ion-input [(ngModel)]="titulo" name="titulo" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fecha: </ion-label>
+      <ion-datetime [(ngModel)]="fecha" name="fecha" required></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Descripción: </ion-label>
+      <ion-textarea [(ngModel)]="descripcion" name="descripcion" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Foto</ion-label>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" />
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Audio: </ion-label>
+      <ion-button (click)="recordAudio()">Grabar Audio</ion-button>
+      <input type="file" (change)="selectAudio($event)" />
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="!incidenciaForm.form.valid">Guardar Incidencia</ion-button>
+  </form>
+</ion-content>
